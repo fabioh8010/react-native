@@ -32,4 +32,11 @@ RCT_ENUM_CONVERTER(RCTTextTransform, (@{
   @"lowercase": @(RCTTextTransformLowercase),
 }), RCTTextTransformUndefined, integerValue)
 
++ (UITextSmartInsertDeleteType)UITextSmartInsertDeleteType:(id)json
+{
+  return json == nil           ? UITextSmartInsertDeleteTypeDefault
+      : [RCTConvert BOOL:json] ? UITextSmartInsertDeleteTypeYes
+                               : UITextSmartInsertDeleteTypeNo;
+}
+
 @end
