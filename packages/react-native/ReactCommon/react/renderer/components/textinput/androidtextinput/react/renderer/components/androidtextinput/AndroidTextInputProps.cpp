@@ -339,7 +339,6 @@ void AndroidTextInputProps::setProp(
     RAW_SET_PROP_SWITCH_CASE_BASIC(autoComplete);
     RAW_SET_PROP_SWITCH_CASE_BASIC(returnKeyLabel);
     RAW_SET_PROP_SWITCH_CASE_BASIC(numberOfLines);
-    RAW_SET_PROP_SWITCH_CASE_BASIC(maximumNumberOfLines, 0);
     RAW_SET_PROP_SWITCH_CASE_BASIC(disableFullscreenUI);
     RAW_SET_PROP_SWITCH_CASE_BASIC(textBreakStrategy);
     RAW_SET_PROP_SWITCH_CASE_BASIC(underlineColorAndroid);
