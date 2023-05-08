@@ -9,6 +9,8 @@ const os = require('os');
 const path = require('path');
 const yargs = require('yargs');
 
+const RN_PACKAGE_DIR = path.join(__dirname, '..', 'packages', 'react-native');
+
 const argv = yargs
   .option('base-version', {
     type: 'string',
@@ -26,10 +28,10 @@ const forkVersion = argv.forkVersion;
 const clean = argv.clean;
 
 if (clean) {
-  rm('-rf', path.join(__dirname, '../android'));
-  rm('-rf', path.join(__dirname, '../sdks/download'));
-  rm('-rf', path.join(__dirname, '../sdks/hermes'));
-  rm('-rf', path.join(__dirname, '../sdks/hermesc'));
+  rm('-rf', path.join(RN_PACKAGE_DIR, '../android'));
+  rm('-rf', path.join(RN_PACKAGE_DIR, '../sdks/download'));
+  rm('-rf', path.join(RN_PACKAGE_DIR, '../sdks/hermes'));
+  rm('-rf', path.join(RN_PACKAGE_DIR, '../sdks/hermesc'));
 }
 
 // Update the version number.
@@ -47,13 +49,13 @@ sed(
   '-i',
   /^version = .*$/,
   `version = '${baseVersion}'`,
-  path.join(__dirname, '../sdks/hermes-engine/hermes-engine.podspec'),
+  path.join(RN_PACKAGE_DIR, '../sdks/hermes-engine/hermes-engine.podspec'),
 );
 
 // Download hermesc from the base version.
 const rnTmpDir = path.join(os.tmpdir(), 'hermesc');
 const rnTgzOutput = path.join(rnTmpDir, `react-native-${baseVersion}.tgz`);
-const hermescDest = path.join(__dirname, '../sdks');
+const hermescDest = path.join(RN_PACKAGE_DIR, '../sdks');
 exec(`mkdir -p ${rnTmpDir}`);
 if (
   exec(
@@ -83,7 +85,7 @@ if (exec('./gradlew publishAllInsideNpmPackage').code) {
 }
 
 // Generate tarball.
-if (exec('npm pack').code) {
+if (exec('npm pack', {cwd: RN_PACKAGE_DIR}).code) {
   echo('Failed to generate tarball');
   exit(1);
 } else {
