@@ -28,10 +28,10 @@ const forkVersion = argv.forkVersion;
 const clean = argv.clean;
 
 if (clean) {
-  rm('-rf', path.join(RN_PACKAGE_DIR, '../android'));
-  rm('-rf', path.join(RN_PACKAGE_DIR, '../sdks/download'));
-  rm('-rf', path.join(RN_PACKAGE_DIR, '../sdks/hermes'));
-  rm('-rf', path.join(RN_PACKAGE_DIR, '../sdks/hermesc'));
+  rm('-rf', path.join(RN_PACKAGE_DIR, 'android'));
+  rm('-rf', path.join(RN_PACKAGE_DIR, 'sdks/download'));
+  rm('-rf', path.join(RN_PACKAGE_DIR, 'sdks/hermes'));
+  rm('-rf', path.join(RN_PACKAGE_DIR, 'sdks/hermesc'));
 }
 
 // Update the version number.
@@ -49,13 +49,13 @@ sed(
   '-i',
   /^version = .*$/,
   `version = '${baseVersion}'`,
-  path.join(RN_PACKAGE_DIR, '../sdks/hermes-engine/hermes-engine.podspec'),
+  path.join(RN_PACKAGE_DIR, 'sdks/hermes-engine/hermes-engine.podspec'),
 );
 
 // Download hermesc from the base version.
 const rnTmpDir = path.join(os.tmpdir(), 'hermesc');
 const rnTgzOutput = path.join(rnTmpDir, `react-native-${baseVersion}.tgz`);
-const hermescDest = path.join(RN_PACKAGE_DIR, '../sdks');
+const hermescDest = path.join(RN_PACKAGE_DIR, 'sdks');
 exec(`mkdir -p ${rnTmpDir}`);
 if (
   exec(
