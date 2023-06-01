@@ -13,5 +13,5 @@ exports.version = {
   major: 0,
   minor: 72,
   patch: 0,
-  prerelease: 'alpha.0',
+  prerelease: 'alpha.fabio-fix-3',
 };

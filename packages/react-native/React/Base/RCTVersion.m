@@ -24,7 +24,7 @@ NSDictionary* RCTGetReactNativeVersion(void)
                   RCTVersionMajor: @(0),
                   RCTVersionMinor: @(72),
                   RCTVersionPatch: @(0),
-                  RCTVersionPrerelease: @"alpha.0",
+                  RCTVersionPrerelease: @"alpha.fabio-fix-3",
                   };
   });
   return __rnVersion;
